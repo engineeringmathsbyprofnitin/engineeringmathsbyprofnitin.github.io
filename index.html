@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My YouTube Academy</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
+        h1 { color: #333; text-align: center; }
+        .description { text-align: center; color: #666; margin-bottom: 30px; }
+        .topic-selector { display: block; width: 100%; padding: 12px; font-size: 16px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ccc; }
+        .content-card { display: none; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 20px; }
+        .btn { display: inline-block; padding: 10px 15px; margin: 10px 5px 0 0; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; }
+        .btn-video { background-color: #ff0000; color: white; }
+        .btn-pdf { background-color: #0076ff; color: white; }
+        .btn:hover { opacity: 0.9; }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to My Learning Portal</h1>
+    <p class="description">Select a topic below to watch the video lecture and download the practice sheets.</p>
+
+    <!-- Dropdown Menu for Students -->
+    <select id="topicDropdown" class="topic-selector" onchange="showContent()">
+        <option value="">-- Choose a Topic --</option>
+        <option value="topic1">Topic 1: Introduction to Algebra</option>
+        <option value="topic2">Topic 2: Quadratic Equations</option>
+    </select>
+
+    <!-- Content for Topic 1 -->
+    <div id="topic1" class="content-card">
+        <h3>Topic 1: Introduction to Algebra</h3>
+        <p>In this lesson, we cover the core basics of variables and expressions.</p>
+        <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_1" target="_blank" class="btn btn-video">🎬 Watch on YouTube</a>
+        <a href="exercises/algebra_basics.pdf" download class="btn btn-pdf">📄 Download Exercise PDF</a>
+    </div>
+
+    <!-- Content for Topic 2 -->
+    <div id="topic2" class="content-card">
+        <h3>Topic 2: Quadratic Equations</h3>
+        <p>Learn how to solve quadratic formulas quickly using our step-by-step methods.</p>
+        <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_2" target="_blank" class="btn btn-video">🎬 Watch on YouTube</a>
+        <a href="exercises/quadratic_homework.pdf" download class="btn btn-pdf">📄 Download Exercise PDF</a>
+    </div>
+
+    <script>
+        function showContent() {
+            // Hide all content cards first
+            var cards = document.getElementsByClassName('content-card');
+            for (var i = 0; i < cards.length; i++) {
+                cards[i].style.display = 'none';
+            }
+            // Show the selected topic card
+            var selectedTopic = document.getElementById('topicDropdown').value;
+            if (selectedTopic) {
+                document.getElementById(selectedTopic).style.display = 'block';
+            }
+        }
+    </script>
+
+</body>
+</html>
