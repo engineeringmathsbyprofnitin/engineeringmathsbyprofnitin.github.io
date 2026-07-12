@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My YouTube Academy</title>
+    <title>Engineering Maths By Prof. Nitin</title>
     <style>
         body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; }
         h1 { color: #333; text-align: center; }
         .description { text-align: center; color: #666; margin-bottom: 30px; }
-        .topic-selector { display: block; width: 100%; padding: 12px; font-size: 16px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ccc; }
+        label { font-weight: bold; display: block; margin-bottom: 5px; color: #444; }
+        .selector { display: block; width: 100%; padding: 12px; font-size: 16px; margin-bottom: 20px; border-radius: 5px; border: 1px solid #ccc; background-color: white; }
+        .topic-container { display: none; } /* Hidden until a semester is picked */
         .content-card { display: none; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 20px; }
         .btn { display: inline-block; padding: 10px 15px; margin: 10px 5px 0 0; text-decoration: none; border-radius: 5px; font-weight: bold; text-align: center; }
         .btn-video { background-color: #ff0000; color: white; }
@@ -19,42 +21,148 @@
 <body>
 
     <h1>Welcome to Engineering Maths By Prof. Nitin</h1>
-    <p class="description">Select a topic below to watch the video lecture and download the practice sheets.</p>
+    <p class="description">Select your semester and topic below to watch video lectures and download practice sheets.</p>
 
-    <!-- Dropdown Menu for Students -->
-    <select id="topicDropdown" class="topic-selector" onchange="showContent()">
-        <option value="">-- Choose a Topic --</option>
-        <option value="topic1">Topic 1: Introduction to Algebra</option>
-        <option value="topic2">Topic 2: Quadratic Equations</option>
+    <!-- STEP 1: Semester Dropdown Menu -->
+    <label for="semesterDropdown">1. Choose Your Semester:</label>
+    <select id="semesterDropdown" class="selector" onchange="onSemesterChange()">
+        <option value="">-- Select Semester --</option>
+        <option value="sem1">Semester I</option>
+        <option value="sem2">Semester II</option>
+        <option value="sem3">Semester III</option>
+        <option value="sem4">Semester IV</option>
     </select>
 
-    <!-- Content for Topic 1 -->
+    <!-- STEP 2: Topic Dropdowns (Hidden initially) -->
+    
+    <!-- Topic List for Semester I -->
+    <div id="container-sem1" class="topic-container">
+        <label for="topicsSem1">2. Choose a Semester I Topic:</label>
+        <select id="topicsSem1" class="selector topic-select-dropdown" onchange="showContent(this)">
+            <option value="">-- Choose a Topic --</option>
+            <option value="topic1">Matrices & Determinants</option>
+            <option value="topic2">Calculus Basics</option>
+        </select>
+    </div>
+
+    <!-- Topic List for Semester II -->
+    <div id="container-sem2" class="topic-container">
+        <label for="topicsSem2">2. Choose a Semester II Topic:</label>
+        <select id="topicsSem2" class="selector topic-select-dropdown" onchange="showContent(this)">
+            <option value="">-- Choose a Topic --</option>
+            <option value="topic3">Differential Equations</option>
+            <option value="topic4">Vector Calculus</option>
+        </select>
+    </div>
+
+    <!-- Topic List for Semester III -->
+    <div id="container-sem3" class="topic-container">
+        <label for="topicsSem3">2. Choose a Semester III Topic:</label>
+        <select id="topicsSem3" class="selector topic-select-dropdown" onchange="showContent(this)">
+            <option value="">-- Choose a Topic --</option>
+            <option value="topic5">Laplace Transforms</option>
+        </select>
+    </div>
+
+    <!-- Topic List for Semester IV -->
+    <div id="container-sem4" class="topic-container">
+        <label for="topicsSem4">2. Choose a Semester IV Topic:</label>
+        <select id="topicsSem4" class="selector topic-select-dropdown" onchange="showContent(this)">
+            <option value="">-- Choose a Topic --</option>
+            <option value="topic6">Probability & Statistics</option>
+        </select>
+    </div>
+
+
+    <!-- ==================== CONTENT CARDS ==================== -->
+
+    <!-- Semester I Content -->
     <div id="topic1" class="content-card">
-        <h3>Topic 1: Introduction to Algebra</h3>
-        <p>In this lesson, we cover the core basics of variables and expressions.</p>
-        <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_1" target="_blank" class="btn btn-video">🎬 Watch on YouTube</a>
-        <a href="exercises/algebra_basics.pdf" download class="btn btn-pdf">📄 Download Exercise PDF</a>
+        <h3>Matrices & Determinants (Sem I)</h3>
+        <p>Master matrix operations, rank of a matrix, and system of linear equations.</p>
+        <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE" target="_blank" class="btn btn-video">🎬 Watch on YouTube</a>
+        <a href="exercises/matrices_practice.pdf" download class="btn btn-pdf">📄 Download Exercise PDF</a>
     </div>
 
-    <!-- Content for Topic 2 -->
     <div id="topic2" class="content-card">
-        <h3>Topic 2: Quadratic Equations</h3>
-        <p>Learn how to solve quadratic formulas quickly using our step-by-step methods.</p>
-        <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_2" target="_blank" class="btn btn-video">🎬 Watch on YouTube</a>
-        <a href="exercises/quadratic_homework.pdf" download class="btn btn-pdf">📄 Download Exercise PDF</a>
+        <h3>Calculus Basics (Sem I)</h3>
+        <p>In-depth look at limits, continuity, and success differential calculus.</p>
+        <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE" target="_blank" class="btn btn-video">🎬 Watch on YouTube</a>
+        <a href="exercises/calculus_basics.pdf" download class="btn btn-pdf">📄 Download Exercise PDF</a>
     </div>
 
+    <!-- Semester II Content -->
+    <div id="topic3" class="content-card">
+        <h3>Differential Equations (Sem II)</h3>
+        <p>Solving first-order and higher-degree ordinary differential equations.</p>
+        <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE" target="_blank" class="btn btn-video">🎬 Watch on YouTube</a>
+        <a href="exercises/diff_eq_homework.pdf" download class="btn btn-pdf">📄 Download Exercise PDF</a>
+    </div>
+
+    <div id="topic4" class="content-card">
+        <h3>Vector Calculus (Sem II)</h3>
+        <p>Gradient, divergence, curl, and line integrals explained clearly.</p>
+        <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE" target="_blank" class="btn btn-video">🎬 Watch on YouTube</a>
+        <a href="exercises/vector_calc.pdf" download class="btn btn-pdf">📄 Download Exercise PDF</a>
+    </div>
+
+    <!-- Semester III Content -->
+    <div id="topic5" class="content-card">
+        <h3>Laplace Transforms (Sem III)</h3>
+        <p>Learn how to map differential equations into algebraic equations using Laplace.</p>
+        <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE" target="_blank" class="btn btn-video">🎬 Watch on YouTube</a>
+        <a href="exercises/laplace_practice.pdf" download class="btn btn-pdf">📄 Download Exercise PDF</a>
+    </div>
+
+    <!-- Semester IV Content -->
+    <div id="topic6" class="content-card">
+        <h3>Probability & Statistics (Sem IV)</h3>
+        <p>Probability distributions, testing of hypotheses, and large sample tests.</p>
+        <a href="https://www.youtube.com/watch?v=YOUR_VIDEO_ID_HERE" target="_blank" class="btn btn-video">🎬 Watch on YouTube</a>
+        <a href="exercises/prob_stats_sheet.pdf" download class="btn btn-pdf">📄 Download Exercise PDF</a>
+    </div>
+
+
+    <!-- ==================== JAVASCRIPT LOGIC ==================== -->
     <script>
-        function showContent() {
-            // Hide all content cards first
+        // Runs when the student selects a semester
+        function onSemesterChange() {
+            // Hide all topic dropdown containers and content cards first
+            var containers = document.getElementsByClassName('topic-container');
+            for (var i = 0; i < containers.length; i++) {
+                containers[i].style.display = 'none';
+            }
+            hideAllContentCards();
+            
+            // Reset all topic dropdowns to their blank options
+            var topicDropdowns = document.getElementsByClassName('topic-select-dropdown');
+            for (var j = 0; j < topicDropdowns.length; j++) {
+                topicDropdowns[j].value = "";
+            }
+
+            // Show the specific topic list container for the selected semester
+            var selectedSem = document.getElementById('semesterDropdown').value;
+            if (selectedSem) {
+                document.getElementById('container-' + selectedSem).style.display = 'block';
+            }
+        }
+
+        // Runs when the student selects a specific topic
+        function showContent(dropdownElement) {
+            hideAllContentCards();
+
+            // Show the selected topic card
+            var selectedTopic = dropdownElement.value;
+            if (selectedTopic) {
+                document.getElementById(selectedTopic).style.display = 'block';
+            }
+        }
+
+        // Helper function to clear previous cards
+        function hideAllContentCards() {
             var cards = document.getElementsByClassName('content-card');
             for (var i = 0; i < cards.length; i++) {
                 cards[i].style.display = 'none';
-            }
-            // Show the selected topic card
-            var selectedTopic = document.getElementById('topicDropdown').value;
-            if (selectedTopic) {
-                document.getElementById(selectedTopic).style.display = 'block';
             }
         }
     </script>
